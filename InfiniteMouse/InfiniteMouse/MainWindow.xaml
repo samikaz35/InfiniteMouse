@@ -32,7 +32,7 @@
         <model:RoundButton x:Name="btnReload" CornerRadius="7" Neon="False" NeonRadius="5" NeonColor="AliceBlue" Background="#FF272727" Height="30" Margin="0,221,12,0" VerticalAlignment="Top" Click="btnReload_Click" ToolTip="Reload les écrans." HorizontalAlignment="Right" Width="30" >
             <Image x:Name="imgReload" Source="pack://application:,,,/Img/reload.png" Stretch="Uniform" Height="25" Width="25" d:RenderOptions.BitmapScalingMode="LowQuality" RenderOptions.BitmapScalingMode="HighQuality"></Image>
         </model:RoundButton>
-        <Label Content="V0.0.1" HorizontalAlignment="Left" Foreground="#FF636363" Margin="253,38,0,0" VerticalAlignment="Top" FontSize="7" Width="30"/>
+        <Label Content="V.0.7.1" HorizontalAlignment="Left" Foreground="#FF636363" Margin="253,38,0,0" VerticalAlignment="Top" FontSize="7" Width="30"/>
 
 
     </Grid>
