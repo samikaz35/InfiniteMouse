@@ -14,7 +14,7 @@
             <Canvas x:Name="ScreenCanvas" Height="147" Width="251" Margin="5,0,7,0"/>
         </GroupBox>
 
-        <model:RoundButton x:Name="btnChangerEtat" CornerRadius="10" Height="27" Neon="True" NeonRadius="5" NeonColor="#FF6D8090" Content="Activer" Margin="13,10,0,0" Background="#FF272727" Foreground="#FFD8CECE" Click="btnChangerEtat_Click" HorizontalAlignment="Left" Width="138" VerticalAlignment="Top" FontSize="14" BorderThickness="1,1,1,1" />
+        <model:RoundButton x:Name="btnChangerEtat" CornerRadius="10" Height="27" Neon="False" NeonRadius="5" NeonColor="#FF6D8090" Content="Activer" Margin="13,10,0,0" Background="#FF272727" Foreground="White" Click="btnChangerEtat_Click" HorizontalAlignment="Left" Width="138" VerticalAlignment="Top" FontSize="14" BorderThickness="1,1,1,1" />
         <Grid x:Name="grdEtat" Margin="0,0,10,0" HorizontalAlignment="Right" Width="95" Height="38" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="70*"/>
@@ -29,7 +29,7 @@
         <model:CheckBoxCustom x:Name="chkActiver" CornerRadius="2" Content="Démarre Activer." IsChecked="{Binding DemarrageActiver}" HorizontalAlignment="Left" Margin="17,221,0,0" VerticalAlignment="Top" Foreground="White" Width="113" FontSize="11"/>
 
 
-        <model:RoundButton x:Name="btnReload" CornerRadius="7" Neon="True" NeonRadius="5" NeonColor="AliceBlue" Background="#FF272727" Height="30" Margin="0,221,12,0" VerticalAlignment="Top" Click="btnReload_Click" ToolTip="Reload les écrans." HorizontalAlignment="Right" Width="30" BorderBrush="{x:Null}" >
+        <model:RoundButton x:Name="btnReload" CornerRadius="7" Neon="False" NeonRadius="5" NeonColor="AliceBlue" Background="#FF272727" Height="30" Margin="0,221,12,0" VerticalAlignment="Top" Click="btnReload_Click" ToolTip="Reload les écrans." HorizontalAlignment="Right" Width="30" >
             <Image x:Name="imgReload" Source="pack://application:,,,/Img/reload.png" Stretch="Uniform" Height="25" Width="25" d:RenderOptions.BitmapScalingMode="LowQuality" RenderOptions.BitmapScalingMode="HighQuality"></Image>
         </model:RoundButton>
         <Label Content="V0.0.1" HorizontalAlignment="Left" Foreground="#FF636363" Margin="253,38,0,0" VerticalAlignment="Top" FontSize="7" Width="30"/>
