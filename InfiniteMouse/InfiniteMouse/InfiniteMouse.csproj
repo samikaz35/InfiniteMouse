@@ -1,0 +1,60 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net10.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+	  <UseWindowsForms>true</UseWindowsForms>
+	  <NoWin32Manifest>true</NoWin32Manifest>
+	  <ApplicationIcon>Img\InfiniteMouse.ico</ApplicationIcon>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Img\Activer.png" />
+    <None Remove="Img\InfiniteMouse.ico" />
+    <None Remove="Img\InfiniteMouse.png" />
+    <None Remove="Img\Ouvrir.png" />
+    <None Remove="Img\PowerButton.png" />
+    <None Remove="Img\reload.png" />
+    <None Remove="Img\ReloadNoir.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Img\InfiniteMouse.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Img\Activer.png" />
+    <Resource Include="Img\InfiniteMouse.ico" />
+    <Resource Include="Img\InfiniteMouse.png" />
+    <Resource Include="Img\Ouvrir.png" />
+    <Resource Include="Img\PowerButton.png" />
+    <Resource Include="Img\reload.png" />
+    <Resource Include="Img\ReloadNoir.png" />
+    <Resource Include="Img\Stop.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

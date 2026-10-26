@@ -1,0 +1,8 @@
+﻿################################################################################
+# Ce fichier .gitignore a été automatiquement créé par Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/InfiniteMouse/.vs
+/InfiniteMouse/InfiniteMouse/bin
+/InfiniteMouse/InfiniteMouse/obj
