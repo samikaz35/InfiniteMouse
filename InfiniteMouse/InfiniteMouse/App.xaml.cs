@@ -3,6 +3,8 @@ using System.IO;
 using System.Text.Json;
 using System.Windows;
 using Forms = System.Windows.Forms;
+using System.Net.Http;
+using System.Reflection;
 
 namespace InfiniteMouse
 {
@@ -11,17 +13,7 @@ namespace InfiniteMouse
     /// </summary>
     public partial class App : System.Windows.Application
     {
-        public App()
-        {
-            this.DispatcherUnhandledException += (s, e) =>
-            {
-                Forms.MessageBox.Show(
-                    e.Exception.ToString(),
-                    "Erreur fatale");
-
-                e.Handled = true;
-            };
-        }
+      
 
 
         const string FICHIERPARAM = @"\InfiniteMouse\Parametre.json";
@@ -30,10 +22,10 @@ namespace InfiniteMouse
         public InfiniteMouseService InfiniteMouse { get; } = new();
         public Forms.NotifyIcon NotificationIcon { get; set; } = new Forms.NotifyIcon();
         private Forms.ToolStripMenuItem _toggleItem = null!;
-        protected override void OnStartup(StartupEventArgs e)
+        protected override async void OnStartup(StartupEventArgs e)
         {
-            
-           
+            await VerifierMiseAJour();
+
             //MainWindow =  new MainWindow();
             //MainWindow.Show();
             Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\InfiniteMouse");
@@ -66,6 +58,56 @@ namespace InfiniteMouse
             base.OnStartup(e);
         }
 
+        private async Task VerifierMiseAJour()
+        {
+            try
+            {
+                HttpClient client = new();
+
+                client.DefaultRequestHeaders.Add(
+                    "User-Agent",
+                    "InfiniteMouse");
+
+                string json =
+                    await client.GetStringAsync(
+                        "https://api.github.com/repos/samikaz35/InfiniteMouse/releases/latest");
+
+                JsonDocument doc =
+                    JsonDocument.Parse(json);
+
+
+                string versionGithub =
+                    doc.RootElement
+                        .GetProperty("tag_name")
+                        .GetString()!
+                        .TrimStart('V', 'v');
+
+                string versionLocaleString =
+                    Assembly.GetExecutingAssembly()
+                        .GetName()
+                        .Version!
+                        .ToString();
+
+                Version versionLocale =
+                    new(versionLocaleString);
+
+                Version versionDistante =
+                    new(versionGithub);
+
+                Forms.MessageBox.Show($"Version local : {versionLocale} \n\rVersion Distance : {versionDistante}");
+
+                if (versionDistante > versionLocale)
+                {
+                    Forms.MessageBox.Show(
+                        $"Une nouvelle version ({versionGithub}) est disponible.",
+                        "InfiniteMouse");
+                }
+            }
+            catch
+            {
+                // Ignore en cas d'erreur internet
+            }
+        }
         private void OnReloadClicked(object? sender, EventArgs e)
         {
 
