@@ -9,7 +9,7 @@
 	  <UseWindowsForms>true</UseWindowsForms>
 	  <NoWin32Manifest>true</NoWin32Manifest>
 	  <ApplicationIcon>Img\InfiniteMouse.ico</ApplicationIcon>
-	  <Version>0.7.1</Version>
+	  <Version>0.7.3</Version>
   </PropertyGroup>
 
   <ItemGroup>
