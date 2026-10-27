@@ -121,6 +121,9 @@
   <data name="Activer" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Img\Activer.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="GitHub" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Img\GitHub.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="InfiniteMouse" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Img\InfiniteMouse.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

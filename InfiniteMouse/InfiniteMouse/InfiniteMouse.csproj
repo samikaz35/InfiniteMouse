@@ -9,11 +9,12 @@
 	  <UseWindowsForms>true</UseWindowsForms>
 	  <NoWin32Manifest>true</NoWin32Manifest>
 	  <ApplicationIcon>Img\InfiniteMouse.ico</ApplicationIcon>
-	  <Version>0.7.2</Version>
+	  <Version>0.7.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Img\Activer.png" />
+    <None Remove="Img\GitHub.png" />
     <None Remove="Img\InfiniteMouse.ico" />
     <None Remove="Img\InfiniteMouse.png" />
     <None Remove="Img\Ouvrir.png" />
@@ -30,6 +31,7 @@
 
   <ItemGroup>
     <Resource Include="Img\Activer.png" />
+    <Resource Include="Img\GitHub.png" />
     <Resource Include="Img\InfiniteMouse.ico" />
     <Resource Include="Img\InfiniteMouse.png" />
     <Resource Include="Img\Ouvrir.png" />

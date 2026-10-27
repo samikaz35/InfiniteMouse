@@ -1,10 +1,11 @@
 ﻿using InfiniteMouse.Model;
+using System.Diagnostics;
 using System.IO;
+using System.Net.Http;
+using System.Reflection;
 using System.Text.Json;
 using System.Windows;
 using Forms = System.Windows.Forms;
-using System.Net.Http;
-using System.Reflection;
 
 namespace InfiniteMouse
 {
@@ -13,9 +14,6 @@ namespace InfiniteMouse
     /// </summary>
     public partial class App : System.Windows.Application
     {
-      
-
-
         const string FICHIERPARAM = @"\InfiniteMouse\Parametre.json";
 
         public bool FermetureVolontaire { get; set; } = false;
@@ -26,8 +24,6 @@ namespace InfiniteMouse
         {
             await VerifierMiseAJour();
 
-            //MainWindow =  new MainWindow();
-            //MainWindow.Show();
             Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\InfiniteMouse");
 
             if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + FICHIERPARAM))
@@ -40,7 +36,6 @@ namespace InfiniteMouse
                 Lecture.Close();
                 InfiniteMouse.Parametre = JsonSerializer.Deserialize<Parametre>(sJson)!;
             }
-
 
             _toggleItem = new Forms.ToolStripMenuItem("Activé", global::InfiniteMouse.Properties.Resources.Activer, OnToggleClicked);
 
@@ -60,47 +55,57 @@ namespace InfiniteMouse
 
         private async Task VerifierMiseAJour()
         {
+            HttpClient client;
+            string json;
+            JsonDocument doc;
+            string versionGithub;
+            string versionLocaleString;
+            Version versionLocale;
+            Version versionDistante;
             try
             {
-                HttpClient client = new();
+                client = new();
 
-                client.DefaultRequestHeaders.Add(
-                    "User-Agent",
-                    "InfiniteMouse");
+                client.DefaultRequestHeaders.Add("User-Agent","InfiniteMouse");
 
-                string json =
-                    await client.GetStringAsync(
-                        "https://api.github.com/repos/samikaz35/InfiniteMouse/releases/latest");
+                json = await client.GetStringAsync("https://api.github.com/repos/samikaz35/InfiniteMouse/releases/latest");
+                doc = JsonDocument.Parse(json);
 
-                JsonDocument doc =
-                    JsonDocument.Parse(json);
+                versionGithub = doc.RootElement.GetProperty("tag_name").GetString()!.TrimStart('V', 'v');
+                versionLocaleString = Assembly.GetExecutingAssembly().GetName().Version!.ToString();
+                versionLocale = new(versionLocaleString);
+                versionDistante = new(versionGithub);
 
-
-                string versionGithub =
-                    doc.RootElement
-                        .GetProperty("tag_name")
-                        .GetString()!
-                        .TrimStart('V', 'v');
-
-                string versionLocaleString =
-                    Assembly.GetExecutingAssembly()
-                        .GetName()
-                        .Version!
-                        .ToString();
-
-                Version versionLocale =
-                    new(versionLocaleString);
-
-                Version versionDistante =
-                    new(versionGithub);
-
-                Forms.MessageBox.Show($"Version local : {versionLocale} \n\rVersion Distance : {versionDistante}");
 
                 if (versionDistante > versionLocale)
                 {
+                    if (
                     Forms.MessageBox.Show(
-                        $"Une nouvelle version ({versionGithub}) est disponible.",
-                        "InfiniteMouse");
+                    $"Une nouvelle version ({versionGithub}) est disponible sur GitHub. \n\rVoulez-vous le télécharger ?",
+                    $"InfiniteMouse - {versionGithub}", MessageBoxButtons.YesNo)
+                        == DialogResult.Yes)
+                    {
+                        JsonElement assets = doc.RootElement.GetProperty("assets");
+                        if (assets.GetArrayLength() == 0)
+                        {
+                            Forms.MessageBox.Show("Une erreur c'est produite, le téléchargement est donc impossible.","Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            throw new Exception();
+                        }
+
+                        JsonElement premierAsset = assets[0];
+
+                        if (!premierAsset.TryGetProperty("browser_download_url", out JsonElement url))
+                        {
+                            Forms.MessageBox.Show("Une erreur c'est produite, le téléchargement est donc impossible.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            throw new Exception();
+                        }
+
+                        Process.Start(new ProcessStartInfo
+                        {
+                            FileName = url.ToString(),
+                            UseShellExecute = true
+                        });
+                    }
                 }
             }
             catch
@@ -110,18 +115,12 @@ namespace InfiniteMouse
         }
         private void OnReloadClicked(object? sender, EventArgs e)
         {
-
             InfiniteMouse.Reload();
-           
         }
 
         private void OnToggleClicked(object? sender, EventArgs e)
         {
-
             ChangerEtat();
-
-
-
         }
 
 
@@ -134,8 +133,6 @@ namespace InfiniteMouse
 
         private void OnQuitterClicked(object? sender, EventArgs e)
         {
-
-
             FermetureVolontaire = true;
             NotificationIcon.Dispose();
             Shutdown();
@@ -162,7 +159,6 @@ namespace InfiniteMouse
 
         protected override void OnExit(ExitEventArgs e)
         {
-
             NotificationIcon.Dispose();
             base.OnExit(e);
         }

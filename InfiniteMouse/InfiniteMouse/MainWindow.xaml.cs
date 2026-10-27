@@ -1,4 +1,6 @@
 ﻿using Microsoft.Win32;
+using System.Diagnostics;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using Forms = System.Windows.Forms;
@@ -24,6 +26,11 @@ namespace InfiniteMouse
         private void frmMain_Loaded(object sender, RoutedEventArgs e)
         {
             DessinerÉcran();
+
+            string versionLocaleString =
+                    Assembly.GetExecutingAssembly().GetName().Version!.ToString();
+
+            lblVersion.Content = $"V.{versionLocaleString.Substring(0, versionLocaleString.Length - 2)}";
 
             if (app.InfiniteMouse.Parametre.DemarrageActiver == true)
             {
@@ -139,33 +146,33 @@ namespace InfiniteMouse
             app.EnregistrerParam();
         }
 
-        private void chkWindows_Checked(object sender, RoutedEventArgs e)
-        {
-            ConfigurerDemarrageWindows(app.InfiniteMouse.Parametre.DemarrageAvecWindows);
-        }
+        //private void chkWindows_Checked(object sender, RoutedEventArgs e)
+        //{
+        //    ConfigurerDemarrageWindows(app.InfiniteMouse.Parametre.DemarrageAvecWindows);
+        //}
 
 
-        private void ConfigurerDemarrageWindows(bool Activer)
-        {
-            RegistryKey? registryKey = Registry.CurrentUser.OpenSubKey
-                (RegistryKeyPath, true);
+        //private void ConfigurerDemarrageWindows(bool Activer)
+        //{
+        //    RegistryKey? registryKey = Registry.CurrentUser.OpenSubKey
+        //        (RegistryKeyPath, true);
 
-            if (registryKey == null || AppDirectory == null)
-                throw new ArgumentException("Une erreur c'est produite");
+        //    if (registryKey == null || AppDirectory == null)
+        //        throw new ArgumentException("Une erreur c'est produite");
 
-            if (Activer)
-            {
-                registryKey.SetValue(AppName, AppDirectory);
-            }
-            else
-            {
-                registryKey.DeleteValue(AppName, false);
-            }
-        }
+        //    if (Activer)
+        //    {
+        //        registryKey.SetValue(AppName, AppDirectory);
+        //    }
+        //    else
+        //    {
+        //        registryKey.DeleteValue(AppName, false);
+        //    }
+        //}
 
-        readonly string? AppDirectory = Environment.ProcessPath;
-        readonly string RegistryKeyPath = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
-        readonly string AppName = "InfiniteMouse";
+        //readonly string? AppDirectory = Environment.ProcessPath;
+        //readonly string RegistryKeyPath = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
+        //readonly string AppName = "InfiniteMouse";
 
         private void ChangerEtatAffichage(bool Actif)
         {
@@ -200,6 +207,15 @@ namespace InfiniteMouse
             app.InfiniteMouse.Reload();
             ChangerEtatAffichage(!app.InfiniteMouse.Actif);
             DessinerÉcran();
+        }
+
+        private void btnGitHub_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo
+            {
+                FileName = "https://github.com/samikaz35/InfiniteMouse/releases",
+                UseShellExecute = true
+            });
         }
     }
 }

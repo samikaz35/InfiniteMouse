@@ -71,6 +71,16 @@ namespace InfiniteMouse.Properties {
         }
         
         /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap GitHub {
+            get {
+                object obj = ResourceManager.GetObject("GitHub", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Icon semblable à (Icône).
         /// </summary>
         internal static System.Drawing.Icon InfiniteMouse {
