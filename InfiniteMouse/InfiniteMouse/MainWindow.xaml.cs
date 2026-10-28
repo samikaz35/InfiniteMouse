@@ -3,6 +3,9 @@ using System.Diagnostics;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
+using System.Windows.Media.Media3D;
 using Forms = System.Windows.Forms;
 using WPF = System.Windows;
 
@@ -204,6 +207,20 @@ namespace InfiniteMouse
 
         private void btnReload_Click(object sender, RoutedEventArgs e)
         {
+            DoubleAnimation animation = new()
+            {
+                From = 0,
+                To = 360,
+                Duration = TimeSpan.FromMilliseconds(350)
+            };
+
+            //Rotation360.Angle = 0; // Remet à zéro
+
+            Rotation360.BeginAnimation(
+                RotateTransform.AngleProperty,
+                animation);
+
+
             app.InfiniteMouse.Reload();
             ChangerEtatAffichage(!app.InfiniteMouse.Actif);
             DessinerÉcran();

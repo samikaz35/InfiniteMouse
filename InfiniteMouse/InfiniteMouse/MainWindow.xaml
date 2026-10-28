@@ -29,8 +29,29 @@
         <model:CheckBoxCustom x:Name="chkActiver" CornerRadius="2" Content="Démarre Activer." IsChecked="{Binding DemarrageActiver}" HorizontalAlignment="Left" Margin="17,221,0,0" VerticalAlignment="Top" Foreground="White" Width="113" FontSize="11"/>
 
 
+        <!--Source="pack://application:,,,/Img/reload.png"-->
+
         <model:RoundButton x:Name="btnReload" CornerRadius="7" Neon="False" NeonRadius="5" NeonColor="AliceBlue" Background="#FF272727" Height="30" Margin="0,221,12,0" VerticalAlignment="Top" Click="btnReload_Click" ToolTip="Reload les écrans." HorizontalAlignment="Right" Width="30" >
-            <Image x:Name="imgReload" Source="pack://application:,,,/Img/reload.png" Stretch="Uniform" Height="25" Width="25" d:RenderOptions.BitmapScalingMode="LowQuality" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+            <Image x:Name="imgReload" RenderTransformOrigin="0.4999,0.564" Source="pack://application:,,,/Img/reload.png" Stretch="Uniform" Height="24" Width="25" d:RenderOptions.BitmapScalingMode="LowQuality" RenderOptions.BitmapScalingMode="HighQuality">
+                <Image.RenderTransform>
+                    <RotateTransform x:Name="Rotation360"/>
+                </Image.RenderTransform>
+
+                <!--<Image.Style>
+                    <Style TargetType="Image">
+                        <Style.Triggers>
+                            <EventTrigger RoutedEvent="MouseDown">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="RenderTransform.Angle" From="0" To="360" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>-->
+            </Image>
         </model:RoundButton>
         <Label x:Name="lblVersion" Content="V.0.7.2" HorizontalAlignment="Left" Foreground="#FF636363" Margin="253,38,0,0" VerticalAlignment="Top" FontSize="7" Width="30"/>
         <model:RoundButton x:Name="btnGitHub"  HorizontalAlignment="Left" Background="#FF272727" Foreground="White"  CornerRadius="7" Margin="111,10,0,0" VerticalAlignment="Top" Click="btnGitHub_Click" Height="27" Width="27">
