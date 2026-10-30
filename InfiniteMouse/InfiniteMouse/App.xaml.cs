@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Reflection;
+using System.ServiceProcess;
 using System.Text.Json;
 using System.Windows;
 using Forms = System.Windows.Forms;
@@ -22,7 +23,17 @@ namespace InfiniteMouse
         private Forms.ToolStripMenuItem _toggleItem = null!;
         protected override async void OnStartup(StartupEventArgs e)
         {
+            Process[] processes = Process.GetProcessesByName("InfiniteMouse");
+
+            if (processes.Length > 1)
+            {
+                Forms.MessageBox.Show("InfiniteMouse est déjà actif sur votre ordinateur!", "InfiniteMouse - Message", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                System.Windows.Application.Current.Shutdown();
+            }
+
+
             await VerifierMiseAJour();
+
 
             Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\InfiniteMouse");
 

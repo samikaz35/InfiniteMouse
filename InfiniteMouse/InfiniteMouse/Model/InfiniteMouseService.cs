@@ -7,7 +7,7 @@ namespace InfiniteMouse.Model
 
     public class InfiniteMouseService
     {
-        const byte FPS = 120;
+        const byte FPS = 60;
         const byte DISTANCEREBORD = 10;
 
         private DispatcherTimer _Timer = new();
@@ -25,6 +25,12 @@ namespace InfiniteMouse.Model
         public Parametre Parametre { get; set; } = new();
         public List<Forms.Screen> LstScreen { get { return Forms.Screen.AllScreens.ToList(); } }
 
+
+        public InfiniteMouseService()
+        {
+            _Timer.Tick += _Timer_Tick;
+        }
+
         public void Reload() 
         {
             Initialiser();
@@ -40,7 +46,6 @@ namespace InfiniteMouse.Model
         public void Initialiser()
         {
             _Timer.Interval = TimeSpan.FromMilliseconds(1000.0 / FPS);
-            _Timer.Tick += _Timer_Tick;
             EstInitialiser = true;
             
             foreach (Forms.Screen screen in LstScreen)
