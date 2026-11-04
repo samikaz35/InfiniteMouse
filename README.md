@@ -2,7 +2,7 @@
 
 **InfiniteMouse** rend votre curseur infini sur plusieurs écrans : quand la souris atteint le bord d'un écran, elle réapparaît automatiquement du côté opposé. Fini les coins où le curseur reste coincé entre deux moniteurs !
 
-## ✨ Fonctionnalités
+## Fonctionnalités
 
 - **Curseur infini** : téléportation automatique d'un bord à l'autre du bureau virtuel
 - **Détection multi-écrans** : aperçu visuel de la disposition de vos moniteurs (l'écran principal est surligné en bleu)
@@ -13,7 +13,7 @@
 - **Mise à jour automatique** : vérifie les nouvelles versions sur GitHub au démarrage
 - **Paramètres sauvegardés** : vos préférences sont conservées entre les sessions
 
-## 📸 Captures d'écran
+## Captures d'écran
 
 **Fenêtre principale** — la LED passe au vert quand la téléportation est active.
 
@@ -27,13 +27,13 @@
 
 ![Menu contextuel de la barre des tâches](screenshots/menu-tray.png)
 
-## 📥 Installation
+## Installation
 
 1. Téléchargez la dernière version depuis la page [Releases](https://github.com/samikaz35/InfiniteMouse/releases)
 2. Lancez `InfiniteMouse.exe`
 3. Prérequis : Windows 10/11 (et le runtime .NET 10 si la version n'est pas autonome)
 
-## 🖥️ Utilisation
+## Utilisation
 
 1. Cliquez sur **Activer** (ou passez par l'icône dans la barre des tâches)
 2. Déplacez votre souris jusqu'au bord d'un écran — elle réapparaît de l'autre côté !
@@ -47,23 +47,9 @@
 | Démarre avec Windows | Crée un raccourci dans le dossier Démarrage de Windows |
 | La fermeture ne ferme pas l'application | Le bouton X minimise vers la barre des tâches au lieu de quitter |
 
-## ⚙️ Comment ça marche
+## Comment ça marche
 
 Un minuteur à 60 images par seconde surveille la position du curseur. Quand celui-ci s'approche à 1 pixel du bord d'un écran, il est téléporté au bord opposé du bureau virtuel total (avec une marge de 10 pixels pour éviter les boucles infinies).
-
-## 🛠️ Compiler depuis les sources
-
-**Prérequis :**
-- Windows 10/11
-- [.NET 10 SDK](https://dotnet.microsoft.com/download)
-
-```bash
-git clone https://github.com/samikaz35/InfiniteMouse.git
-cd InfiniteMouse
-dotnet build -c Release
-```
-
-L'exécutable se trouve dans `bin/Release/net10.0-windows/`.
 
 ## 🧰 Technologies
 
