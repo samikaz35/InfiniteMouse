@@ -159,7 +159,7 @@ namespace InfiniteMouse
             shortcut.Save();
         }
 
-        private void ChangerEtatAffichage(bool Actif)
+        public void ChangerEtatAffichage(bool Actif)
         {
             if (Actif)
             {

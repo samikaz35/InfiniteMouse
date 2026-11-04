@@ -7,7 +7,7 @@ namespace InfiniteMouse.Model
 
     public class InfiniteMouseService
     {
-        const byte FPS = 60;
+        const byte FPS = 120;
         const byte DISTANCEREBORD = 10;
 
         private DispatcherTimer _Timer = new();
@@ -33,7 +33,9 @@ namespace InfiniteMouse.Model
 
         public void Reload() 
         {
+            _Timer.Stop();
             Initialiser();
+
             if (Parametre.DemarrageActiver)
             {
                 Activer();
@@ -47,7 +49,13 @@ namespace InfiniteMouse.Model
         {
             _Timer.Interval = TimeSpan.FromMilliseconds(1000.0 / FPS);
             EstInitialiser = true;
-            
+
+            //reset
+            _TopX = 0;
+            _TopY =0;
+           _DownX = 0;
+           _DownY = 0; 
+
             foreach (Forms.Screen screen in LstScreen)
             {
                 if (screen.Bounds.Right > _TopX)
@@ -105,33 +113,30 @@ namespace InfiniteMouse.Model
         {
             int X = PosX;
             int Y = PosY;
+            int newX = X;
+            int newY = Y;
 
-
-            Forms.Screen CurrentScreen = Forms.Screen.FromPoint(Cursor.Position);
-
-            int Left = CurrentScreen.Bounds.Left;
-            int Right = CurrentScreen.Bounds.Right;
-            int Top = CurrentScreen.Bounds.Top;
-            int Bottom = CurrentScreen.Bounds.Bottom;
-
-            if (X >= Right - 1)
+            if (X >= _TopX - 1)
             {
-                Forms.Cursor.Position = new Point(_DownX + DISTANCEREBORD, Y);
+                newX = _DownX + DISTANCEREBORD;
+            }
+            else if (X <= _DownX + 1)
+            {
+                newX = _TopX - DISTANCEREBORD;
             }
 
-            if (Y >= Bottom - 1)
+            if (Y >= _TopY - 1)
             {
-                Forms.Cursor.Position = new Point(X, _DownY + DISTANCEREBORD);
+                newY = _DownY + DISTANCEREBORD;
+            }
+            else if (Y <= _DownY + 1)
+            {
+                newY = _TopY - DISTANCEREBORD;
             }
 
-            if (X <= Left + 1)
+            if (newX != X || newY != Y)
             {
-                Forms.Cursor.Position = new Point(_TopX - DISTANCEREBORD, Y);
-            }
-
-            if (Y <= Top + 1)
-            {
-                Forms.Cursor.Position = new Point(X, _TopY - DISTANCEREBORD);
+                Forms.Cursor.Position = new Point(newX, newY);
             }
 
         }

@@ -58,7 +58,7 @@ namespace InfiniteMouse
                 
             }
 
-            _toggleItem = new Forms.ToolStripMenuItem("Activé", global::InfiniteMouse.Properties.Resources.Activer, OnToggleClicked);
+            _toggleItem = new Forms.ToolStripMenuItem("Activer", global::InfiniteMouse.Properties.Resources.Activer, OnToggleClicked);
 
             NotificationIcon.Icon = global::InfiniteMouse.Properties.Resources.InfiniteMouse;
             NotificationIcon.Text = "InfiniteMouse - Désactivé";
@@ -205,6 +205,12 @@ namespace InfiniteMouse
                 _toggleItem.Image = global::InfiniteMouse.Properties.Resources.Stop;
 
             }
+
+            if (MainWindow is MainWindow test)
+            {
+                test.ChangerEtatAffichage(!InfiniteMouse.Actif);
+            }
+
         }
     }
 
