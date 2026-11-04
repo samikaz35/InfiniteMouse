@@ -8,6 +8,7 @@ using Forms = System.Windows.Forms;
 using WPF = System.Windows;
 using IWshRuntimeLibrary;
 using File = System.IO;
+using InfiniteMouse.Model;
 
 
 namespace InfiniteMouse
@@ -150,12 +151,12 @@ namespace InfiniteMouse
 
         private void chkWindows_Checked(object sender, RoutedEventArgs e)
         {
-                WshShell shell = new WshShell();
-                IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(File.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "InfiniteMouse.lnk"));
+            WshShell shell = new WshShell();
+            IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(File.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "InfiniteMouse.lnk"));
 
-                shortcut.TargetPath = File.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "InfiniteMouse.exe");
+            shortcut.TargetPath = File.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "InfiniteMouse.exe");
 
-                shortcut.Save();
+            shortcut.Save();
         }
 
         private void ChangerEtatAffichage(bool Actif)

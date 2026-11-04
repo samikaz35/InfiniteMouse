@@ -21,7 +21,7 @@ namespace InfiniteMouse
         public InfiniteMouseService InfiniteMouse { get; } = new();
         public Forms.NotifyIcon NotificationIcon { get; set; } = new Forms.NotifyIcon();
         private Forms.ToolStripMenuItem _toggleItem = null!;
-        protected override async void OnStartup(StartupEventArgs e)
+        protected override void OnStartup(StartupEventArgs e)
         {
             Process[] processes = Process.GetProcessesByName("InfiniteMouse");
 
@@ -32,20 +32,30 @@ namespace InfiniteMouse
             }
 
 
-            await VerifierMiseAJour();
+            _ = VerifierMiseAJour();
 
 
             Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + @"\InfiniteMouse");
 
             if (File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + FICHIERPARAM))
             {
-                StreamReader Lecture = null!;
-                string sJson = "";
+                try
+                {
+                    StreamReader Lecture = null!;
+                    string sJson = "";
 
-                Lecture = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + FICHIERPARAM);
-                sJson = Lecture.ReadToEnd();
-                Lecture.Close();
-                InfiniteMouse.Parametre = JsonSerializer.Deserialize<Parametre>(sJson)!;
+                    Lecture = new StreamReader(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + FICHIERPARAM);
+                    sJson = Lecture.ReadToEnd();
+                    Lecture.Close();
+
+
+                    InfiniteMouse.Parametre = JsonSerializer.Deserialize<Parametre>(sJson)!;
+                }
+                catch (Exception)
+                {
+                    
+                }
+                
             }
 
             _toggleItem = new Forms.ToolStripMenuItem("Activé", global::InfiniteMouse.Properties.Resources.Activer, OnToggleClicked);
@@ -166,10 +176,12 @@ namespace InfiniteMouse
             Ecrire = new StreamWriter(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + FICHIERPARAM);
             Ecrire.WriteLine(sJson);
             Ecrire.Close();
+
         }
 
         protected override void OnExit(ExitEventArgs e)
         {
+            EnregistrerParam();
             NotificationIcon.Dispose();
             base.OnExit(e);
         }
