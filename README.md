@@ -10,12 +10,12 @@
 - **Démarre avec Windows** : crée automatiquement un raccourci dans le dossier Démarrage
 - **Démarre activé** : la téléportation est active dès le lancement de l'app
 - **Rechargement des écrans** : re-détecte vos moniteurs sans redémarrer (pratique si vous branchez ou débranchez un écran)
-- **Mise à jour automatique** : vérifie les nouvelles versions sur GitHub au démarrage
+- **Mise à jour semi-automatique** : vérifie les nouvelles versions sur GitHub au démarrage
 - **Paramètres sauvegardés** : vos préférences sont conservées entre les sessions
 
 ## Captures d'écran
 
-**Fenêtre principale** — la LED passe au vert quand la téléportation est active.
+**Fenêtre principale** — la LED passe au vert quand la téléportation est active. Cette LED passe au rouge lorsque la téléportation est désativé.
 
 ![Fenêtre principale d'InfiniteMouse](screenshots/fenetre-principale.png)
 
@@ -30,7 +30,7 @@
 ## Installation
 
 1. Téléchargez la dernière version depuis la page [Releases](https://github.com/samikaz35/InfiniteMouse/releases)
-2. Lancez `InfiniteMouse.exe`
+2. Télécharger le .msi pour utiliser l'installateur.
 3. Prérequis : Windows 10/11 (et le runtime .NET 10 si la version n'est pas autonome)
 
 ## Utilisation
@@ -44,12 +44,12 @@
 | Option | Description |
 |--------|-------------|
 | Démarre Activé | La téléportation est active dès le lancement |
-| Démarre avec Windows | Crée un raccourci dans le dossier Démarrage de Windows |
+| Démarre avec Windows | Crée un raccourci dans le dossier Démarrage de Windows, comme cela, l'application démarra avec Windows |
 | La fermeture ne ferme pas l'application | Le bouton X minimise vers la barre des tâches au lieu de quitter |
 
 ## Comment ça marche
 
-Un minuteur à 60 images par seconde surveille la position du curseur. Quand celui-ci s'approche à 1 pixel du bord d'un écran, il est téléporté au bord opposé du bureau virtuel total (avec une marge de 10 pixels pour éviter les boucles infinies).
+Un minuteur à 120 images par seconde surveille la position du curseur. Quand celui-ci s'approche à 1 pixel du bord d'un écran, il est téléporté au bord opposé du bureau virtuel total (avec une marge de 10 pixels pour éviter les boucles infinies).
 
 ## Technologies
 
