@@ -113,17 +113,17 @@ namespace InfiniteMouse
                             throw new Exception();
                         }
 
-                        JsonElement premierAsset = assets[0];
+                        //JsonElement premierAsset = assets[0];
 
-                        if (!premierAsset.TryGetProperty("browser_download_url", out JsonElement url))
-                        {
-                            Forms.MessageBox.Show("Une erreur c'est produite, le téléchargement est donc impossible.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            throw new Exception();
-                        }
+                        //if (!premierAsset.TryGetProperty("browser_download_url", out JsonElement url))
+                        //{
+                        //    Forms.MessageBox.Show("Une erreur c'est produite, le téléchargement est donc impossible.", "Erreur", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //    throw new Exception();
+                        //}
 
                         Process.Start(new ProcessStartInfo
                         {
-                            FileName = url.ToString(),
+                            FileName = $"https://github.com/samikaz35/InfiniteMouse/releases/download/{doc.RootElement.GetProperty("tag_name").GetString()!}/InfiniteMouse.Setup.msi",
                             UseShellExecute = true
                         });
                     }
