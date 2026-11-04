@@ -134,8 +134,6 @@ namespace InfiniteMouse.Model
                 Forms.Cursor.Position = new Point(X, _TopY - DISTANCEREBORD);
             }
 
-            //List<Forms.Screen> lst = Forms.Screen.AllScreens.ToList();
-            //WPF.MessageBox.Show(lst.ToString());
         }
     }
 }

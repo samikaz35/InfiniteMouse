@@ -25,7 +25,6 @@ namespace InfiniteMouse
 
         }
 
-
         private void frmMain_Loaded(object sender, RoutedEventArgs e)
         {
             DessinerÉcran();
@@ -124,7 +123,7 @@ namespace InfiniteMouse
         }
         private void frmMain_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            if (/*!app.FermetureVolontaire ||*/ app.InfiniteMouse.Parametre.SystemeTray == true)
+            if (app.InfiniteMouse.Parametre.SystemeTray == true)
             {
                 e.Cancel = true;
                 Hide();
@@ -151,42 +150,13 @@ namespace InfiniteMouse
 
         private void chkWindows_Checked(object sender, RoutedEventArgs e)
         {
-            //WPF.MessageBox.Show(AppDomain.CurrentDomain.BaseDirectory);
-            //if (!File.File.Exists(File.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "InfiniteMouse.lnk")))
-            //{
                 WshShell shell = new WshShell();
                 IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(File.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "InfiniteMouse.lnk"));
 
                 shortcut.TargetPath = File.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "InfiniteMouse.exe");
 
                 shortcut.Save();
-            //}
-
-
         }
-
-
-        //private void ConfigurerDemarrageWindows(bool Activer)
-        //{
-        //    RegistryKey? registryKey = Registry.CurrentUser.OpenSubKey
-        //        (RegistryKeyPath, true);
-
-        //    if (registryKey == null || AppDirectory == null)
-        //        throw new ArgumentException("Une erreur c'est produite");
-
-        //    if (Activer)
-        //    {
-        //        registryKey.SetValue(AppName, AppDirectory);
-        //    }
-        //    else
-        //    {
-        //        registryKey.DeleteValue(AppName, false);
-        //    }
-        //}
-
-        //readonly string? AppDirectory = Environment.ProcessPath;
-        //readonly string RegistryKeyPath = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run";
-        //readonly string AppName = "InfiniteMouse";
 
         private void ChangerEtatAffichage(bool Actif)
         {
@@ -244,8 +214,6 @@ namespace InfiniteMouse
                 FileName = "https://github.com/samikaz35/InfiniteMouse/releases",
                 UseShellExecute = true
             });
-
-
 
         }
 
