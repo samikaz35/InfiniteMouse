@@ -7,14 +7,14 @@
         xmlns:local="clr-namespace:InfiniteMouse"
 
         mc:Ignorable="d"
-        Title="InfiniteMouse" Height="450" Width="313" Loaded="frmMain_Loaded" Icon="pack://application:,,,/Img/InfiniteMouse.png" Closing="frmMain_Closing" Background="#FF130C13" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Closed="frmMain_Closed" Activated="frmMain_Activated">
+        Title="InfiniteMouse" Height="450" Width="313" Loaded="frmMain_Loaded" Icon="pack://application:,,,/Img/InfiniteMouse.png" Closing="frmMain_Closing" Background="#FF100510" ResizeMode="NoResize" SizeToContent="WidthAndHeight" Closed="frmMain_Closed" Activated="frmMain_Activated">
 
     <Grid x:Name="grdMain" Margin="10,10,10,10">
-        <GroupBox Header="Disposition détectée" Height="171" VerticalAlignment="Top" BorderBrush="White" Foreground="White" Margin="10,45,10,0">
+        <GroupBox Header="Disposition détectée" Height="171" VerticalAlignment="Top" BorderBrush="#FF0A19FF" Foreground="White" Margin="10,45,10,0">
             <Canvas x:Name="ScreenCanvas" Height="147" Width="251" Margin="5,0,7,0"/>
         </GroupBox>
 
-        <model:ButtonCustom x:Name="btnChangerEtat" CornerRadius="7" Height="27" Neon="False" NeonRadius="5" NeonColor="#FF6D8090" Content="Activer" Margin="13,10,0,0" Background="#FF272727" Foreground="White" Click="btnChangerEtat_Click" HorizontalAlignment="Left" Width="94" VerticalAlignment="Top" FontSize="14" BorderThickness="2,2,2,2" />
+        <model:ButtonCustom x:Name="btnChangerEtat" CornerRadius="7" Height="27" Neon="False" NeonRadius="5" NeonColor="#FF6D8090" Content="Activer" Margin="13,10,0,0" Background="#FF2F1C2F" BorderBrush="#FF7D7D7D" Foreground="White" Click="btnChangerEtat_Click" HorizontalAlignment="Left" Width="94" VerticalAlignment="Top" FontSize="14" BorderThickness="2,2,2,2" />
         <Grid x:Name="grdEtat" Margin="0,0,10,0" HorizontalAlignment="Right" Width="95" Height="38" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="70*"/>
@@ -28,7 +28,7 @@
         <model:CheckBoxCustom x:Name="chkWindows"  CornerRadius="2" Content="Démarre avec Windows." IsChecked="{Binding DemarrageAvecWindows}" HorizontalAlignment="Left" Margin="17,258,0,0" VerticalAlignment="Top" Foreground="White" Width="151" FontSize="11" Checked="chkWindows_Checked" Background="#FF2F1C2F" BorderBrush="#FF7D7D7D" CheckColor="White" Unchecked="chkWindows_Unchecked"/>
         <model:CheckBoxCustom x:Name="chkActiver" CornerRadius="2" Content="Démarre Activer." IsChecked="{Binding DemarrageActiver}" HorizontalAlignment="Left" Margin="17,224,0,0" VerticalAlignment="Top" Foreground="White" Width="113" FontSize="11" Background="#FF2F1C2F" BorderBrush="#FF7D7D7D" CheckColor="White"/>
 
-        <model:ButtonCustom x:Name="btnReload" CornerRadius="7" Neon="False" NeonRadius="5" NeonColor="AliceBlue" Background="#FF272727" Height="30" Margin="0,224,12,0" VerticalAlignment="Top" Click="btnReload_Click" ToolTip="Reload les écrans." HorizontalAlignment="Right" Width="30" BorderThickness="2,2,2,2" >
+        <model:ButtonCustom x:Name="btnReload" CornerRadius="7" Neon="False" NeonRadius="5" NeonColor="AliceBlue" Background="#FF2F1C2F" BorderBrush="#FF7D7D7D" Height="30" Margin="0,224,12,0" VerticalAlignment="Top" Click="btnReload_Click" ToolTip="Reload les écrans." HorizontalAlignment="Right" Width="30" BorderThickness="2,2,2,2" >
             <Image x:Name="imgReload" RenderTransformOrigin="0.4999,0.564" Source="pack://application:,,,/Img/reload.png" Stretch="Uniform" Height="24" Width="25" d:RenderOptions.BitmapScalingMode="LowQuality" RenderOptions.BitmapScalingMode="HighQuality">
                 <Image.RenderTransform>
                     <RotateTransform x:Name="Rotation360"/>
@@ -36,7 +36,7 @@
             </Image>
         </model:ButtonCustom>
         <Label x:Name="lblVersion" Content="V.0.7.2" HorizontalAlignment="Left" Foreground="#FF636363" Margin="253,38,0,0" VerticalAlignment="Top" FontSize="7" Width="30"/>
-        <model:ButtonCustom x:Name="btnGitHub"  HorizontalAlignment="Left" Background="#FF272727" Foreground="White"  CornerRadius="7" Margin="113,10,0,0" VerticalAlignment="Top" Click="btnGitHub_Click" Height="27" Width="27" BorderThickness="2,2,2,2">
+        <model:ButtonCustom x:Name="btnGitHub"  HorizontalAlignment="Left" Background="#FF2F1C2F" BorderBrush="#FF7D7D7D" Foreground="White"  CornerRadius="7" Margin="113,10,0,0" VerticalAlignment="Top" Click="btnGitHub_Click" Height="27" Width="27" BorderThickness="2,2,2,2">
             <Image x:Name="imgGit" Source="pack://application:,,,/Img/GitHub.png" Stretch="Uniform" Height="24" Width="24" d:RenderOptions.BitmapScalingMode="LowQuality" RenderOptions.BitmapScalingMode="HighQuality" Margin="-0.5,0,0,0"></Image>
 
         </model:ButtonCustom>
