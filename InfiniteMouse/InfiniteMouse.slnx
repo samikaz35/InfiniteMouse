@@ -4,6 +4,9 @@
     <BuildType Name="Debug" />
     <BuildType Name="Release" />
   </Configurations>
+  <Project Path="InfiniteMouse Setup/InfiniteMouse Setup.vdproj" Type="Installer">
+    <BuildType Solution="All|*" Project="Debug" />
+  </Project>
   <Project Path="InfiniteMouse/InfiniteMouse.csproj">
     <BuildType Solution="All|*" Project="Debug" />
   </Project>
