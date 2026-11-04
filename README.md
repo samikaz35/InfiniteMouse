@@ -51,13 +51,13 @@
 
 Un minuteur à 60 images par seconde surveille la position du curseur. Quand celui-ci s'approche à 1 pixel du bord d'un écran, il est téléporté au bord opposé du bureau virtuel total (avec une marge de 10 pixels pour éviter les boucles infinies).
 
-## 🧰 Technologies
+## Technologies
 
 - C# / .NET 10
 - WPF (interface graphique)
 - Windows Forms (icône système, détection des écrans)
 
-## 👤 Auteur
+## Auteur
 
 **Samikaz35** — [GitHub](https://github.com/samikaz35)
 
