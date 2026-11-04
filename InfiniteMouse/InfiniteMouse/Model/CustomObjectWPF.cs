@@ -9,7 +9,7 @@ using WPF = System.Windows;
 
 namespace InfiniteMouse.Model
 {
-    public class RoundButton : Controls.Button
+    public class ButtonCustom : Controls.Button
     {
         #region Constantes
 
@@ -27,21 +27,21 @@ namespace InfiniteMouse.Model
             DependencyProperty.Register(
                 nameof(Neon),
                 typeof(bool),
-                typeof(RoundButton),
+                typeof(ButtonCustom),
                 new PropertyMetadata(false, OnNeonChanged));
 
         public static readonly DependencyProperty NeonRadiusProperty =
             DependencyProperty.Register(
                 nameof(NeonRadius),
                 typeof(double),
-                typeof(RoundButton),
+                typeof(ButtonCustom),
                 new PropertyMetadata(20.0, OnNeonRadiusChanged));
 
         public static readonly DependencyProperty NeonColorProperty =
             DependencyProperty.Register(
                 nameof(NeonColor),
                 typeof(Media.Color),
-                typeof(RoundButton),
+                typeof(ButtonCustom),
                 new PropertyMetadata(
                     Media.Colors.Cyan,
                     OnNeonColorChanged));
@@ -50,7 +50,7 @@ namespace InfiniteMouse.Model
             DependencyProperty.Register(
                 nameof(CornerRadius),
                 typeof(CornerRadius),
-                typeof(RoundButton),
+                typeof(ButtonCustom),
                 new PropertyMetadata(new CornerRadius(15)));
 
         #endregion
@@ -86,7 +86,7 @@ namespace InfiniteMouse.Model
 
         #region Constructeur
 
-        public RoundButton()
+        public ButtonCustom()
         {
             Background = Media.Brushes.LightGray;
             Foreground = Media.Brushes.Black;
@@ -112,7 +112,7 @@ namespace InfiniteMouse.Model
 
         private static void OnNeonRadiusChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is RoundButton button)
+            if (d is ButtonCustom button)
             {
                 button.UpdateNeon();
             }
@@ -122,7 +122,7 @@ namespace InfiniteMouse.Model
             DependencyObject d,
             DependencyPropertyChangedEventArgs e)
         {
-            if (d is RoundButton button)
+            if (d is ButtonCustom button)
             {
                 button.UpdateNeon();
             }
@@ -132,7 +132,7 @@ namespace InfiniteMouse.Model
             DependencyObject d,
             DependencyPropertyChangedEventArgs e)
         {
-            if (d is RoundButton button)
+            if (d is ButtonCustom button)
             {
                 button.UpdateNeon();
             }
@@ -257,7 +257,7 @@ namespace InfiniteMouse.Model
             border.AppendChild(presenter);
 
             Controls.ControlTemplate template =
-                new(typeof(RoundButton));
+                new(typeof(ButtonCustom));
 
             template.VisualTree = border;
 

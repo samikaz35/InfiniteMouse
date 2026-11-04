@@ -1,13 +1,13 @@
-﻿using Microsoft.Win32;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Media3D;
 using Forms = System.Windows.Forms;
 using WPF = System.Windows;
+using IWshRuntimeLibrary;
+using File = System.IO;
 
 
 namespace InfiniteMouse
@@ -149,10 +149,21 @@ namespace InfiniteMouse
             app.EnregistrerParam();
         }
 
-        //private void chkWindows_Checked(object sender, RoutedEventArgs e)
-        //{
-        //    ConfigurerDemarrageWindows(app.InfiniteMouse.Parametre.DemarrageAvecWindows);
-        //}
+        private void chkWindows_Checked(object sender, RoutedEventArgs e)
+        {
+            //WPF.MessageBox.Show(AppDomain.CurrentDomain.BaseDirectory);
+            //if (!File.File.Exists(File.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "InfiniteMouse.lnk")))
+            //{
+                WshShell shell = new WshShell();
+                IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(File.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "InfiniteMouse.lnk"));
+
+                shortcut.TargetPath = File.Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "InfiniteMouse.exe");
+
+                shortcut.Save();
+            //}
+
+
+        }
 
 
         //private void ConfigurerDemarrageWindows(bool Activer)
@@ -202,7 +213,7 @@ namespace InfiniteMouse
         private void frmMain_Activated(object sender, EventArgs e)
         {
             ChangerEtatAffichage(!app.InfiniteMouse.Actif);
-            
+
         }
 
         private void btnReload_Click(object sender, RoutedEventArgs e)
@@ -233,6 +244,17 @@ namespace InfiniteMouse
                 FileName = "https://github.com/samikaz35/InfiniteMouse/releases",
                 UseShellExecute = true
             });
+
+
+
+        }
+
+        private void chkWindows_Unchecked(object sender, RoutedEventArgs e)
+        {
+            if (File.File.Exists(File.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "InfiniteMouse.lnk")))
+            {
+                File.File.Delete(File.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Startup), "InfiniteMouse.lnk"));
+            }
         }
     }
 }
